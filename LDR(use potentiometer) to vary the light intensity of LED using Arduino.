@@ -1,0 +1,38 @@
+int LDR_Pin = A0;    // LDR connected to A0 
+int LED_Pin = 9;     // LED connected to digital pin 9 (PWM) 
+void setup() { 
+pinMode(LED_Pin, OUTPUT); 
+Serial.begin(9600);   // for debugging 
+} 
+void loop () { 
+int ldrValue = analogRead (LDR_Pin);   // Read LDR (0–1023) 
+// Map LDR value to LED brightness (0–255 for PWM) 
+int ledBrightness = map (ldrValue, 0, 1023, 255, 0);  
+// Inverted mapping: more light → dim LED, less light → brighter LED 
+analogWrite (LED_Pin, ledBrightness);  // Adjust LED brightness 
+Serial.print ("LDR Value: "); 
+Serial.print (ldrValue); 
+Serial.print ("  LED Brightness: "); 
+Serial.println (ledBrightness); 
+delay (100); 
+} 
+--------------------------------------------------------------
+Connections:
+
+1. Components Needed in Tinkercad
+   Arduino Uno board
+   Breadboard
+   1 × LED
+   1 × 220Ω resistor (for LED)
+   1 × LDR/Potentionmeter (Light Dependent Resistor)
+   1 × 10kΩ resistor (for LDR voltage divider)
+   Jumper wires
+
+2. Circuit Connection
+  1. LED Circuit
+      o Connect LED anode (long leg) → Arduino pin 9 (PWM pin).
+      o Connect LED cathode (short leg) → 220Ω resistor → GND.
+  2. LDR Circuit (Voltage Divider)
+      o One leg of LDR → 5V.
+      o Other leg of LDR → A0 and one side of 10kΩ resistor.
+      o Other side of 10kΩ resistor → GND
