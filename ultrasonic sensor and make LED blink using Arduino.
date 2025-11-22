@@ -1,0 +1,67 @@
+const int trigPin = 9;
+const int echoPin = 10;
+const int ledPin = 7;
+long duration;
+int distance;
+
+void setup() {
+  Serial.begin(9600);  // Initialize serial communication at 9600 baud
+  pinMode(trigPin, OUTPUT);  // Set the trigPin as an output
+  pinMode(echoPin, INPUT);   // Set the echoPin as an input
+  pinMode(ledPin, OUTPUT);   // Set the ledPin as an output
+}
+
+void loop() {
+  // Clear the trigPin by setting it LOW for a brief moment
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2); 
+  // Trigger the ultrasonic pulse
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Read the duration of the echo pulse
+  duration = pulseIn(echoPin, HIGH);
+
+  // If no valid duration or duration is too large, treat it as invalid
+  if (duration == 0 || duration > 30000) {
+    distance = 0;  // Treat invalid or zero duration as no measurement
+  } else {
+    // Calculate the distance in centimeters
+    distance = duration * 0.034 / 2;
+  }
+
+  // Print the measured distance to the Serial Monitor
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Turn the LED on if the distance is less than 200 cm
+  if (distance < 200) {
+    digitalWrite(ledPin, HIGH);  // Turn on the LED
+  } else {
+    digitalWrite(ledPin, LOW);   // Turn off the LED
+  }
+
+  // Delay between measurements for stability
+  delay(200);  // Adjust the delay for quicker response
+}
+----------------------------------------------------------------------------------------------------------------------
+
+Connections:
+components:
+   Arduino Uno R3
+   Ultrasonic Sensor (HC-SR04)
+   Breadboard (optional)
+   Jumper wires
+   1 LED
+   1 Resistor (220Ω or 330Ω)
+Connections:
+   VCC (Ultrasonic) → 5V (Arduino)
+   GND (Ultrasonic) → GND (Arduino)
+   TRIG (Ultrasonic) → Digital Pin 9 (Arduino)
+   ECHO (Ultrasonic) → Digital Pin 10 (Arduino)
+   LED Anode (long leg) → Arduino Digital Pin 7 (through resistor).
+   Connect the anode to Pin 7.
+   Place a 220Ω resistor between Pin 7 and LED anode (to limit current).
+   LED Cathode (short leg) → GND (Arduino).
