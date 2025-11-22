@@ -1,0 +1,44 @@
+int sensorPin = A0;   // LM35 output connected to A0 (TMP36) 
+int ledPin = 13;      // LED connected to pin 13 
+float temperature;    // variable to store temperature 
+void setup() { 
+Serial.begin (9600);   // Start Serial Monitor 
+pinMode(ledPin, OUTPUT); 
+} 
+void loop () { 
+int reading = analogRead(sensorPin);         // read sensor value 
+temperature = (reading * 5.0 * 100.0) / 1024; // convert to Celsius 
+Serial.print("Temperature: "); 
+Serial.print(temperature); 
+Serial.println(" *C"); 
+// Notification if temperature > 30°C 
+if (temperature > 30) { 
+digitalWrite(ledPin, HIGH);  // Turn ON LED 
+Serial.println("⚠️ High Temperature!"); 
+} else { 
+digitalWrite(ledPin, LOW);   // Turn OFF LED 
+} 
+delay(1000); // read every second 
+}
+
+------------------------------------------------------------------------
+
+Connections :
+
+1. Components Needed (in Tinkercad)
+Components:
+   Arduino Uno R3
+   LM35/ TMP36 (temperature sensor)
+   1 LED (for visual notification)
+   1 Resistor (220Ω for LED)
+   Breadboard & wires
+
+2. Circuit Design (Connections)
+Connections:
+   LM35/ TMP36:
+    o VCC → 5V
+    o GND → GND
+    o OUT → A0 (Analog Pin)
+   LED:
+    o Anode (+) → Pin 13 (or any digital pin) via 220Ω resistor
+    o Cathode (–) → GND
