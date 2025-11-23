@@ -1,0 +1,42 @@
+1.
+name = input ("Enter your name: ")
+n = int (input("How many times to print your name? "))
+for i in range(n):
+ print(name)
+  
+Code using while loop
+
+name = input ("Enter your name: ")
+n = int(input("How many times to print your name? "))
+count = 0
+while count < n:
+ print(name)
+ count += 1
+--------------------------------------------------
+2.
+try:
+ num1 = float (input ("Enter numerator: "))
+ num2 = float (input ("Enter denominator: "))
+ result = num1 / num2
+ print ("Result:", result)
+except ZeroDivisionError:
+ print ("Error: Cannot divide by zero!")
+------------------------------------------------
+3.
+import time
+from datetime import datetime
+for i in range(10):
+ current_time = datetime.now().strftime("%H:%M:%S")
+ print("Time:", current_time)
+ time.sleep(10) # wait 10 seconds
+------------------------------------------------------
+4.
+filename = "sample.txt"
+with open(filename, "r") as file:
+ line_number = 1
+ for line in file:
+ words = line.split() # Split line into words
+ count = len(words)
+ print(f"Line {line_number} has {count} words.")
+ line_number +
+------------------------------------------------
