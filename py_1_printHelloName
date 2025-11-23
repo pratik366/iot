@@ -1,0 +1,41 @@
+1.
+name = input("Enter your name: ")
+print("Hello, " + name + "!")
+-----------------------------
+2.
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+print("Sum:", a + b)
+print("Difference:", a - b)
+print("Product:", a * b)
+if b != 0:
+ print("Division:", a / b)
+else:
+ print("Division: Cannot divide by zero")
+--------------------------------------------
+3.
+text = input("Enter a string: ")
+word_count = len(text.split())
+char_count = len(text)
+print("Word count:", word_count)
+print("Character count:", char_count)
+--------------------------------------------
+4.
+shape = input("Enter the shape (rectangle/triangle/circle): ").lower()
+if shape == "rectangle":
+ length = float(input("Enter length: "))
+ width = float(input("Enter width: "))
+ area = length * width
+elif shape == "triangle":
+ base = float(input("Enter base: "))
+ height = float(input("Enter height: "))
+ area = 0.5 * base * height
+elif shape == "circle":
+ radius = float(input("Enter radius: "))
+ area = 3.14159 * radius * radius
+else:
+ area = None
+ print("Invalid shape!")
+if area is not None:
+ print("Area of the", shape, "is:", area)
+-----------------------------------------------------
